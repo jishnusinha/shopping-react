@@ -1,24 +1,20 @@
-import React from 'react';
-
-const Menu = ({ items }) => {
+import React, { useState, useEffect } from "react";
+import Singleitem from "./Singleitem";
+const Menu = (props) => {
+  const { products, onAdd } = props;
   return (
-    <div className='section-center'>
-      {items.map((menuItem) => {
-        const { id, title, img, desc, price } = menuItem;
-        return (
-          <article key={id} className='menu-item'>
-            <img src={img} alt={title} className='photo' />
-            <div className='item-info'>
-              <header>
-                <h4>{title}</h4>
-                <h4 className='price'>${price}</h4>
-              </header>
-              <p className='item-text'>{desc}</p>
-            </div>
-          </article>
-        );
-      })}
-    </div>
+    <main className="block col-12">
+      <h2>Products</h2>
+      <div className="row">
+        {products.map((product) => (
+          <Singleitem
+            key={product.id}
+            product={product}
+            onAdd={onAdd}
+          ></Singleitem>
+        ))}
+      </div>
+    </main>
   );
 };
 
